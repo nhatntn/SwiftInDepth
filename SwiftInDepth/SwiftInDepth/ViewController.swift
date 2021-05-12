@@ -8,12 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     func logMessage(message: Message) {
         switch message {
         case let .text(userId: id, contents: contents, date: date):
@@ -36,6 +36,23 @@ class ViewController: UIViewController {
         }
         return nil
     }
-
+    
+    private func multipleTypesWithEnum() {
+        //add multiple types to an array via an enum
+        let now = Date()
+        let hourFromNow = Date(timeIntervalSinceNow: 3600)
+        
+        let dates: [DateType] = [
+            DateType.singleDate(now),
+            DateType.dateRange(now..<hourFromNow)
+        ]
+        
+        for dateType in dates {
+            switch dateType {
+            case .singleDate(let date): print("Date is \(date)")
+            case .dateRange(let range): print("Range is \(range)")
+            }
+        }
+    }
 }
 
